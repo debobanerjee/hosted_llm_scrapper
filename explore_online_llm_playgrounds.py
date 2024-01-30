@@ -1,5 +1,9 @@
 import pyperclip
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import time
@@ -34,8 +38,12 @@ def get_xpath_model_name(args):
     return xpath_model_name
 
 def main(args, driver):
+    
+
     driver.get(args.url)
+    time.sleep(20)
     model_selection_dropdown = driver.find_element(By.XPATH, '//*[@id="__next"]/main/div/div/div[2]/div[1]/div/div[2]/div/div/div/div')
+    
     model_selection_dropdown.click()
 
     xpath_model_name = get_xpath_model_name(args)
@@ -65,7 +73,13 @@ def main(args, driver):
     driver.close()
 
 if __name__ == "__main__":
-    driver = webdriver.Chrome()
+    # driver = webdriver.Chrome()
+    # options = Options()
+    # options.add_argument('--headless')
+    # options.add_argument('--no-sandbox')
+    # options.add_argument('--disable-dev-shm-usage')
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--model-name", type=str, default=os.environ.get('MODEL1'))
     parser.add_argument("--url", type=str, default=os.environ.get('HOSTED_URL'))
