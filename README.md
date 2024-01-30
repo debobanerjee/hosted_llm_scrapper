@@ -15,7 +15,7 @@ Prompting Hosted LLMs for Free
 
 #### How to Use ###
 ```
-python explore_online_llm_playground.py --url https://labs.perplexity.ai/ --model-name llama2-70b-chat --query """how to start learning generative ai?"""
+python explore_online_llm_playground.py --url HOSTED_URL --model-name MODEL_NAME --query """how to start learning generative ai?"""
 ```
 
 #### ** References **

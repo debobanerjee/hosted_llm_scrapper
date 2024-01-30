@@ -4,28 +4,31 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import time
 import argparse
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 def get_xpath_model_name(args):
-    if args.model_name == 'pplx-7b-online':
-        xpath_model_name = '//*[@id="lamma-select"]/option[1]'
-    elif args.model_name == 'pplx-70b-online':
-        xpath_model_name = '//*[@id="lamma-select"]/option[2]'
-    elif args.model_name == 'pplx-7b-chat':
-        xpath_model_name = '//*[@id="lamma-select"]/option[3]'
-    elif args.model_name == 'pplx-70b-chat':
-        xpath_model_name = '//*[@id="lamma-select"]/option[4]'
-    elif args.model_name == 'mistral-7b-instruct':
-        xpath_model_name = '//*[@id="lamma-select"]/option[5]'
-    elif args.model_name == 'codellama-34b-instruct':
-        xpath_model_name = '//*[@id="lamma-select"]/option[6]'
-    elif args.model_name == 'llama2-70b-chat':
-        xpath_model_name = '//*[@id="lamma-select"]/option[7]'
-    elif args.model_name ==  'llava-7b-chat':
-        xpath_model_name = '//*[@id="lamma-select"]/option[8]'
-    elif args.model_name ==  'mixtral-8x7b-instruct':
-        xpath_model_name = '//*[@id="lamma-select"]/option[9]'
-    elif args.model_name ==  'mistral-medium':
-        xpath_model_name = '//*[@id="lamma-select"]/option[10]'
+    if args.model_name == os.environ.get('MODEL1'):
+        xpath_model_name = os.environ.get('XPATH_MODEL1')
+    elif args.model_name == os.environ.get('MODEL2'):
+        xpath_model_name = os.environ.get('XPATH_MODEL2')
+    elif args.model_name == os.environ.get('MODEL3'):
+        xpath_model_name = os.environ.get('XPATH_MODEL3')
+    elif args.model_name == os.environ.get('MODEL4'):
+        xpath_model_name = os.environ.get('XPATH_MODEL4')
+    elif args.model_name == os.environ.get('MODEL5'):
+        xpath_model_name = os.environ.get('XPATH_MODEL5')
+    elif args.model_name == os.environ.get('MODEL6'):
+        xpath_model_name = os.environ.get('XPATH_MODEL6')
+    elif args.model_name == os.environ.get('MODEL7'):
+        xpath_model_name = os.environ.get('XPATH_MODEL7')
+    elif args.model_name ==  os.environ.get('MODEL8'):
+        xpath_model_name = os.environ.get('XPATH_MODEL8')
+    elif args.model_name ==  os.environ.get('MODEL9'):
+        xpath_model_name = os.environ.get('XPATH_MODEL9')
+    elif args.model_name ==  os.environ.get('MODEL10'):
+        xpath_model_name = os.environ.get('XPATH_MODEL10')
     else:
         raise NotImplementedError
     return xpath_model_name
@@ -64,11 +67,8 @@ def main(args, driver):
 if __name__ == "__main__":
     driver = webdriver.Chrome()
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model-name", type=str, default="llama2-70b-chat", choices=["pplx-7b-online", 
-                                                                                 "pplx-70b-online", "pplx-7b-chat", 
-                                                                                 "pplx-70b-chat","mistral-7b-instruct","codellama-34b-instruct", "llama2-70b-chat", 
-                                                                                 "llava-7b-chat", "mixtral-8x7b-instruct", "mistral-medium"])
-    parser.add_argument("--url", type=str, default="https://labs.perplexity.ai/")
+    parser.add_argument("--model-name", type=str, default=os.environ.get('MODEL1'))
+    parser.add_argument("--url", type=str, default=os.environ.get('HOSTED_URL'))
     parser.add_argument("--query", type=str, default="how to start learning generative ai?")
     args = parser.parse_args()
     main(args, driver)
