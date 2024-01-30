@@ -18,7 +18,7 @@ Prompting Hosted LLMs for Free
 python explore_online_llm_playground.py --url HOSTED_URL --model-name MODEL_NAME --query """how to start learning generative ai?"""
 ```
 
-#### ** References **
+#### **References**
 - https://googlechromelabs.github.io/chrome-for-testing/ 
 - https://www.browserstack.com/guide/python-selenium-to-run-web-automation-test
 - https://copyprogramming.com/howto/python-selenium-copy-text-to-clipboard-a-comprehensive-guide
