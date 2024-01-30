@@ -1,2 +1,2 @@
-# hosted_llm_scrapper
+# Let's Prompt Hosted LLMs
 Prompting Hosted LLMs for Free
