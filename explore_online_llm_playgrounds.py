@@ -41,8 +41,8 @@ def main(args, driver):
     
 
     driver.get(args.url)
-    time.sleep(20)
-    model_selection_dropdown = driver.find_element(By.XPATH, '//*[@id="__next"]/main/div/div/div[2]/div[1]/div/div[2]/div/div/div/div')
+
+    model_selection_dropdown = driver.find_element(By.XPATH, os.environ.get('MODEL_SELECTION_XPATH'))
     
     model_selection_dropdown.click()
 
@@ -59,7 +59,7 @@ def main(args, driver):
     search_bar.send_keys(Keys.RETURN)
     time.sleep(20) # increase or reduce the sleep time based on requirements
     
-    copy_icon = driver.find_element(By.XPATH, '//*[@id="__next"]/main/div/div/div[1]/div/div[2]/div/div/div/div[3]/div/div/div[2]/button/div[2]/div')
+    copy_icon = driver.find_element(By.XPATH, os.environ.get('COPY_ICON_XPATH'))
     copy_icon.click()
     time.sleep(2)
     
@@ -81,7 +81,7 @@ if __name__ == "__main__":
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model-name", type=str, default=os.environ.get('MODEL1'))
+    parser.add_argument("--model-name", type=str, default=os.environ.get('MODEL7'))
     parser.add_argument("--url", type=str, default=os.environ.get('HOSTED_URL'))
     parser.add_argument("--query", type=str, default="how to start learning generative ai?")
     args = parser.parse_args()
